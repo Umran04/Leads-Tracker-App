@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+import { getDatabase, ref, push, onValue} from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
 const firebaseConfig = {
     databaseURL:'https://leads-tracker-app-b62d5-default-rtdb.europe-west1.firebasedatabase.app/'
@@ -19,11 +19,9 @@ const inputEl = document.getElementById('input-el')
 const ulEl = document.getElementById('ul-el')
 let listItems = ''
 
-
-
-
-
-
+onValue(referenceInDB, (snapshot) => {
+    console.log(snapshot.val())
+})
 
 function render(leads){
     
@@ -37,8 +35,6 @@ function render(leads){
                 ${leads[i]}
             </a>
         </li>`
-
-        
     }
 
     ulEl.innerHTML = listItems
@@ -53,22 +49,13 @@ inputBtn.addEventListener('click', () => {
         //console.log(inputEl.value)
 
         push(referenceInDB, inputEl.value)
-
         inputEl.value = ''
-        
-       
-    
-    
 })
 
 
 
 
 
-deleteBtn.addEventListener('dblclick', () => {
-    
-   
-    
-})
+deleteBtn.addEventListener('dblclick', () => {})
 
 
