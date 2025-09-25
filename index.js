@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-database.js";
 
 const firebaseConfig = {
     databaseURL:'https://leads-tracker-app-b62d5-default-rtdb.europe-west1.firebasedatabase.app/'
@@ -7,6 +7,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app)
+const referenceInDB = ref(database, 'leads')
 
 console.log(app)
 console.log(database)
@@ -49,7 +50,10 @@ inputBtn.addEventListener('click', () => {
     if(inputEl.value == ''){
         alert('enter a url')
     }
-        console.log(inputEl.value)
+        //console.log(inputEl.value)
+
+        push(referenceInDB, inputEl.value)
+
         inputEl.value = ''
         
        
