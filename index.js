@@ -50,7 +50,7 @@ inputBtn.addEventListener('click', () => {
     if(inputEl.value == ''){
         alert('enter a url')
     }
-        //console.log(inputEl.value)
+       
 
         push(referenceInDB, inputEl.value)
         inputEl.value = ''
